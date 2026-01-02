@@ -4,6 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Engineering leadership, software systems, and organizational culture insights from 22 years of software development experience.">
+    <meta name="author" content="Lakshmikanthan">
+    <meta name="keywords"
+        content="engineering leadership, software development, organizational culture, GenAI, agentic AI, system mindset">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lakshh.github.io/">
+    <meta property="og:title" content="Lakshmikanthan's Blog">
+    <meta property="og:description"
+        content="Engineering leadership, software systems, and organizational culture insights from 22 years of experience.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://lakshh.github.io/">
+    <meta name="twitter:title" content="Lakshmikanthan's Blog">
+    <meta name="twitter:description"
+        content="Engineering leadership, software systems, and organizational culture insights from 22 years of experience.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://lakshh.github.io/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
     <title>Lakshmikanthan's Blog</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +42,8 @@
 </head>
 
 <body>
+    <!-- Skip link for keyboard navigation -->
+    <a href="#content-area" class="skip-link">Skip to content</a>
 
     <header class="site-header">
         <h1>Lakshmikanthan's Blog</h1>
@@ -19,12 +51,15 @@
 
     <main class="container">
         <!-- Left Section: Content (Post List or Single Post) -->
-        <section id="content-area" class="content-area">
+        <section id="content-area" class="content-area" tabindex="-1">
             <!-- Driven by JS -->
         </section>
 
+        <!-- ARIA live region for screen reader announcements -->
+        <div aria-live="polite" aria-atomic="true" class="sr-only" id="route-announcer"></div>
+
         <!-- Right Section: Sidebar (Tags) -->
-        <aside class="sidebar">
+        <aside class="sidebar" aria-label="Blog sidebar">
             <div class="sidebar-sticky">
                 <div class="sidebar-section">
                     <h3>Topics</h3>

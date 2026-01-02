@@ -13,6 +13,100 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for browser back/forward buttons
     window.addEventListener('popstate', handleRouting);
 
+    // Accessibility Functions
+    function announceRouteChange(message) {
+        const announcer = document.getElementById('route-announcer');
+        if (announcer) {
+            announcer.textContent = message;
+        }
+    }
+
+    function focusContentArea() {
+        const contentArea = document.getElementById('content-area');
+        if (contentArea) {
+            contentArea.focus();
+        }
+    }
+
+    function formatDate(isoDate) {
+        const date = new Date(isoDate);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    function updateMetaTags(post) {
+        const description = `Read "${post.title}" - ${post.tags.join(', ')}`;
+        const url = `https://lakshh.github.io/?id=${post.id}`;
+        const title = `${post.title} | Lakshmikanthan's Blog`;
+
+        // Update meta description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute('content', description);
+        }
+
+        // Update Open Graph tags
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', title);
+
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', description);
+
+        let ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', url);
+
+        // Update Twitter tags
+        let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute('content', title);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute('content', description);
+
+        let twitterUrl = document.querySelector('meta[name="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', url);
+
+        // Update canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', url);
+    }
+
+    function resetMetaTags() {
+        const description = "Engineering leadership, software systems, and organizational culture insights from 22 years of software development experience.";
+        const url = "https://lakshh.github.io/";
+        const title = "Lakshmikanthan's Blog";
+
+        // Reset meta description
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', description);
+
+        // Reset Open Graph tags
+        let ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', title);
+
+        let ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', description);
+
+        let ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', url);
+
+        // Reset Twitter tags
+        let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute('content', title);
+
+        let twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute('content', description);
+
+        let twitterUrl = document.querySelector('meta[name="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', url);
+
+        // Reset canonical URL
+        let canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', url);
+    }
+
     // Functions
     function handleRouting() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const uniqueTags = [...new Set(allTags)];
 
         tagsCluster.innerHTML = uniqueTags.map(tag => `
-            <button class="sidebar-tag" data-tag="${tag}">${tag}</button>
+            <button class="sidebar-tag" data-tag="${tag}" aria-pressed="false">${tag}</button>
         `).join('');
 
         // Add Event Listeners to Tags
@@ -42,11 +136,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentFilterTag === tag) {
                     currentFilterTag = null; // deselect
                     e.target.classList.remove('active');
+                    e.target.setAttribute('aria-pressed', 'false');
                 } else {
                     // clear currently active class
-                    document.querySelectorAll('.sidebar-tag').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.sidebar-tag').forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-pressed', 'false');
+                    });
                     currentFilterTag = tag;
                     e.target.classList.add('active');
+                    e.target.setAttribute('aria-pressed', 'true');
                 }
 
                 // When filtering, always go to list view
@@ -66,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = baseTitle;
         document.querySelector('.site-header h1').textContent = baseTitle;
 
+        // Reset meta tags to default
+        resetMetaTags();
+
+        // Announce to screen readers
+        announceRouteChange('Showing blog post list');
+
         const filteredPosts = currentFilterTag
             ? BLOG_POSTS.filter(post => post.tags.includes(currentFilterTag))
             : BLOG_POSTS;
@@ -78,9 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
         contentArea.innerHTML = filteredPosts.map(post => `
             <article class="post-item">
                 <div class="post-item-header">
-                    <h2 class="post-item-title" data-id="${post.id}">${post.title}</h2>
+                    <h2>
+                        <a href="?id=${post.id}" class="post-item-title" data-id="${post.id}">
+                            ${post.title}
+                        </a>
+                    </h2>
                     <div class="post-meta">
-                        <span class="post-date">${post.date}</span>
+                        <span class="post-date">${formatDate(post.date)}</span>
                         <div class="post-tags">
                             ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                         </div>
@@ -92,11 +201,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add Click Listeners to Titles
         document.querySelectorAll('.post-item-title').forEach(titleEl => {
             titleEl.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
                 const postId = parseInt(e.target.dataset.id);
                 renderPost(postId);
             });
         });
 
+        // Only focus if this is a navigation action (not initial load)
+        if (shouldPushState) {
+            focusContentArea();
+        }
         window.scrollTo(0, 0);
     }
 
@@ -119,6 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = `${post.title} | ${baseTitle}`;
         document.querySelector('.site-header h1').textContent = post.title;
 
+        // Update meta tags for this post
+        updateMetaTags(post);
+
+        // Announce to screen readers
+        announceRouteChange(`Now reading: ${post.title}`);
+
         // Fetch Content
         let contentHtml = '<p>Loading...</p>';
         try {
@@ -137,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
                 <!-- Removing the duplicate H1 since it is now in the header -->
                 <div class="single-post-meta" style="margin-top: 0;">
-                    <span class="post-date">${post.date}</span>
+                    <span class="post-date">${formatDate(post.date)}</span>
                     <span style="margin: 0 10px;">•</span>
                     <span class="post-tags-text">${post.tags.join(', ')}</span>
                 </div>
@@ -153,7 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPostList(true); // Go back to list and update URL
         });
 
-        // Scroll to top of content area
+        // Focus management and scroll to top
+        if (shouldPushState) {
+            focusContentArea();
+        }
         window.scrollTo(0, 0);
     }
 });
