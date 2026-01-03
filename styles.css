@@ -124,9 +124,9 @@ a:hover {
 
 /* Post List Item */
 .post-item {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     display: block;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -135,9 +135,9 @@ a:hover {
 }
 
 .post-item-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     color: var(--color-text-heading);
     display: inline-block;
     cursor: pointer;
