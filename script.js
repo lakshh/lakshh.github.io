@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = baseTitle;
         document.querySelector('.site-header h1').textContent = baseTitle;
 
+        // Ensure sidebar is visible (remove single-view mode)
+        document.querySelector('.container').classList.remove('single-view');
+
         // Reset meta tags to default
         resetMetaTags();
 
@@ -232,6 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.title = `${post.title} | ${baseTitle}`;
         document.querySelector('.site-header h1').textContent = post.title;
+
+        // Hide sidebar for single post view
+        document.querySelector('.container').classList.add('single-view');
 
         // Update meta tags for this post
         updateMetaTags(post);

@@ -87,6 +87,20 @@ a:hover {
     padding-bottom: 80px;
 }
 
+/* Single View Layout Modifications */
+.container.single-view {
+    display: block;
+}
+
+.container.single-view .sidebar {
+    display: none;
+}
+
+.container.single-view .content-area {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
 /* Header */
 .site-header {
     max-width: var(--container-max-width);
