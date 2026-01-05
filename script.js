@@ -121,22 +121,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderTags() {
         const allTags = BLOG_POSTS.flatMap(post => post.tags);
+        // Calculate tag counts
+        const tagCounts = allTags.reduce((acc, tag) => {
+            acc[tag] = (acc[tag] || 0) + 1;
+            return acc;
+        }, {});
+
         const uniqueTags = [...new Set(allTags)];
 
         tagsCluster.innerHTML = uniqueTags.map(tag => `
-            <button class="sidebar-tag" data-tag="${tag}" aria-pressed="false">${tag}</button>
+            <button class="sidebar-tag" data-tag="${tag}" aria-pressed="false">
+                ${tag} <span class="tag-count">(${tagCounts[tag]})</span>
+            </button>
         `).join('');
 
         // Add Event Listeners to Tags
         document.querySelectorAll('.sidebar-tag').forEach(tagEl => {
             tagEl.addEventListener('click', (e) => {
-                const tag = e.target.dataset.tag;
+                const tag = e.currentTarget.dataset.tag;
+                const button = e.currentTarget;
 
                 // Toggle active state
                 if (currentFilterTag === tag) {
                     currentFilterTag = null; // deselect
-                    e.target.classList.remove('active');
-                    e.target.setAttribute('aria-pressed', 'false');
+                    button.classList.remove('active');
+                    button.setAttribute('aria-pressed', 'false');
                 } else {
                     // clear currently active class
                     document.querySelectorAll('.sidebar-tag').forEach(t => {
@@ -144,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         t.setAttribute('aria-pressed', 'false');
                     });
                     currentFilterTag = tag;
-                    e.target.classList.add('active');
-                    e.target.setAttribute('aria-pressed', 'true');
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
                 }
 
                 // When filtering, always go to list view

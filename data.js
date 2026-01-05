@@ -3,7 +3,7 @@ const BLOG_POSTS = [
         id: 1,
         title: "The GenAI Agent-UI Space",
         date: "2025-12-20",
-        tags: ["Agentic AI", "GenAI", "UI"],
+        tags: ["Agents", "GenAI", "UI", "AI"],
         contentPath: 'posts/post-1.html'
     },
     {
