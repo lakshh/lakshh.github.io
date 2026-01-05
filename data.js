@@ -19,5 +19,12 @@ const BLOG_POSTS = [
         date: "2025-10-10",
         tags: ["Leadership", "Org Culture", "Mindset"],
         contentPath: 'posts/post-3.html'
+    },
+    {
+        id: 4,
+        title: "Null Safety with JSpecify",
+        date: "2026-01-05",
+        tags: ["Spring Boot", "Java", "JSpecify"],
+        contentPath: 'posts/jspecify.html'
     }
 ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first

@@ -1,0 +1,85 @@
+<p>We are currently migrating our applications from Spring Boot 3.x to the newly available Spring Boot 4. I noticed that
+    the Spring team has adopted JSpecify to build null-safe APIs across the portfolio. Handling null values has always
+    been an annoying programming construct in Java applications which unnecessarily bloated the code with null checks
+    for every object before accessing their methods.</p>
+
+<p>Previously we had <code>Optional</code> which existed as a guard against <code>NullPointerException</code>s. When you
+    use <code>Optional</code>, methods return <code>Optional.empty()</code> when data is missing and the API forces you
+    to handle the "no value" case explicitly.</p>
+
+<pre class="code-block"><code><span class="code-keyword">import</span> java.util.Optional;
+
+<span class="code-keyword">public class</span> <span class="code-type">UserRepository</span> {
+
+    <span class="code-comment">// Signals to the caller: "The user might not exist, you MUST handle this."</span>
+    <span class="code-keyword">public</span> <span class="code-type">Optional</span>&lt;<span class="code-type">User</span>&gt; <span class="code-method">findById</span>(<span class="code-type">String</span> id) {
+        <span class="code-type">User</span> user = database.get(id);
+        <span class="code-keyword">return</span> <span class="code-type">Optional</span>.ofNullable(user);
+    }
+}
+
+<span class="code-comment">// Usage:</span>
+repo.findById(<span class="code-string">"123"</span>)
+    .map(<span class="code-type">User</span>::getName)
+    .orElse(<span class="code-string">"Guest"</span>);</code></pre>
+
+<p>JSpecify is a standard specification for expressing nullability contracts in Java, designed to be consumed by
+    compilers, IDEs, and static analysis tools. It is more of a compile time construct unlike <code>Optional</code>
+    and
+    is easier to integrate into existing code with the help of annotations. JSpecify has zero runtime overhead and
+    performance cost. It's purely compile-time validation with no wrapper objects or memory allocation. Modern IDEs
+    (IntelliJ IDEA, VS Code with extensions, Eclipse) analyze JSpecify annotations as you type and surface
+    warnings/errors immediately during development.</p>
+
+<p>The following are the two most commonly used annotations:</p>
+<ul>
+    <li><code>@NullMarked</code> - all types in the annotated scope are non-null.</li>
+    <li><code>@Nullable</code> - a reference may be null and callers must handle the null case</li>
+</ul>
+
+<p>The key insight is that <code>@NullMarked</code> at package or class level sets the default (everything is
+    non-null),
+    and then you use <code>@Nullable</code> to mark individual exceptions.</p>
+
+<pre class="code-block"><code><span class="code-keyword">import</span> org.jspecify.annotations.NullMarked;
+<span class="code-keyword">import</span> org.jspecify.annotations.Nullable;
+
+<span class="code-annotation">@NullMarked</span> <span class="code-comment">// Everything in this class is non-null by default</span>
+<span class="code-keyword">public class</span> <span class="code-type">UserProfile</span> {
+
+    <span class="code-comment">//Statically enforced via IDE and analysis tools</span>
+    <span class="code-keyword">public void</span> <span class="code-method">updateNickname</span>(<span class="code-type">String</span> name) { 
+        System.out.println(name.toUpperCase()); 
+    }
+
+    <span class="code-comment">//This parameter is allowed to be null</span>
+    <span class="code-keyword">public void</span> <span class="code-method">updateBio</span>(<span class="code-annotation">@Nullable</span> <span class="code-type">String</span> bio) {
+        <span class="code-keyword">if</span> (bio != <span class="code-keyword">null</span>) { <span class="code-comment">// IDE will warn you if you forget this check</span>
+            System.out.println(bio.trim());
+        }
+    }
+}</code></pre>
+
+<p>You can annotate your Java/Spring application with JSpecify annotations to significantly reduce the chances of
+    <code>NullPointerException</code> at runtime. This is easily actionable on existing projects without breaking
+    your
+    APIs. A practical adoption strategy is to progressively mark packages as <code>@NullMarked</code> and fix
+    resulting
+    warnings incrementally.
+</p>
+
+<p>It is much more effective to use both: JSpecify annotations for fields and parameters, and
+    <code>Optional</code> for method return values where the API design benefits from explicit "maybe no value"
+    handling.
+</p>
+<p style="margin-top: 40px; font-style: italic; color: var(--color-text-muted);">Together, JSpecify and
+    <code>Optional</code> lead to more robust and higher-quality Java applications with refined
+    codebases.
+</p>
+<br>
+<strong>Further Reading:</strong>
+<ul>
+    <li><a href="https://jspecify.dev/" target="_blank">JSpecify Documentation</a></li>
+    <li><a href="https://docs.spring.io/spring-framework/reference/core/null-safety.html" target="_blank">Spring
+            Framework Null-Safety Guide</a></li>
+</ul>

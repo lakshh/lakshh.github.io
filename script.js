@@ -258,14 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         contentArea.innerHTML = `
             <div class="single-post-view">
-                <a href="./" class="back-link" id="home-btn">
-                    <span>←</span> <span style="text-decoration: underline;">Lakshmikanthan's Blog</span>
-                </a>
-                <!-- Removing the duplicate H1 since it is now in the header -->
-                <div class="single-post-meta" style="margin-top: 0;">
-                    <span class="post-date">${formatDate(post.date)}</span>
-                    <span style="margin: 0 10px;">•</span>
-                    <span class="post-tags-text">${post.tags.join(', ')}</span>
+                <div class="post-navigation-header">
+                    <a href="./" class="back-link" id="home-btn">
+                        <span>←</span> <span style="text-decoration: underline;">Lakshmikanthan's Blog</span>
+                    </a>
+                    <div class="post-info-right">
+                        <span class="post-date">${formatDate(post.date)}</span>
+                        <span style="margin: 0 10px;">•</span>
+                        <span class="post-tags-text">${post.tags.join(', ')}</span>
+                    </div>
                 </div>
                 <div class="single-post-content">
                     ${contentHtml}

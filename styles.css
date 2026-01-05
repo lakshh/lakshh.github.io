@@ -135,7 +135,7 @@ a:hover {
 }
 
 .post-item-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 500;
     margin-bottom: 2px;
     color: var(--color-text-heading);
@@ -204,13 +204,30 @@ a:hover {
 }
 
 .single-post-meta {
+    /* Deprecated or can be removed if not used elsewhere. Keeping for safety if needed, or reusing. */
     margin-bottom: 40px;
     color: #777;
-    /* Another grey shade, let's map to light or muted */
     font-size: 0.9rem;
     border-bottom: 1px solid var(--color-border-tag);
-    /* Using tag border color which is #eee */
     padding-bottom: 20px;
+}
+
+.post-navigation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--color-border-tag);
+    padding-bottom: 15px;
+}
+
+.post-navigation-header .back-link {
+    margin-bottom: 0;
+}
+
+.post-info-right {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
 }
 
 .single-post-content {
@@ -359,4 +376,52 @@ a:hover {
     .single-post-title {
         font-size: 1.6rem;
     }
+}
+
+/* Code Syntax Highlighting */
+.code-block {
+    background-color: #1e1e1e;
+    /* Dark IDE-like background */
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 25px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    white-space: pre;
+    /* Essential for code formatting */
+    border: 2px solid #888;
+}
+
+.code-keyword {
+    color: #569cd6;
+    font-weight: bold;
+}
+
+.code-type {
+    color: #4ec9b0;
+}
+
+.code-string {
+    color: #ce9178;
+}
+
+.code-comment {
+    color: #6a9955;
+    font-style: italic;
+}
+
+.code-annotation {
+    color: #dcdcaa;
+}
+
+.code-method {
+    color: #dcdcaa;
+}
+
+.code-number {
+    color: #b5cea8;
 }
