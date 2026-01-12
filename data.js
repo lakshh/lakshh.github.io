@@ -26,5 +26,12 @@ const BLOG_POSTS = [
         date: "2026-01-05",
         tags: ["Spring Boot", "Java", "JSpecify"],
         contentPath: 'posts/jspecify.html'
+    },
+    {
+        id: 5,
+        title: "Software Operations Checklist",
+        date: "2026-01-12",
+        tags: ["Operations", "DevOps", "Process"],
+        contentPath: 'posts/operational-audits.html'
     }
 ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first

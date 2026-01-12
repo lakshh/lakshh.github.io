@@ -1,0 +1,97 @@
+<p>
+    Software lives in operations longer than in development. So it is prudent to optimize for being more effective and
+    efficient in software operations.
+</p>
+<p>
+    DevOps is an organizational principle where the same development team is responsible for the entire product
+    lifecycle,
+    from development to operations.
+</p>
+<p>
+    The following is a list of checks that the product owning team can audit on a regular cadence to ensure that they
+    are
+    set up for being successful in operations.
+</p>
+
+<h2>Alerts</h2>
+<ul>
+    <li>Alerts are configured for all relevant metrics for the product.</li>
+    <li>There are engineers assigned on rotation to acknowledge the alerts and respond to them.</li>
+    <li>A secondary support engineer is assigned to respond to the alerts in case the primary personnel is unavailable.
+        This ensures redundancy and facilitates knowledge transfer through shadowing.
+    </li>
+    <li>Alerts that do not result in action are continuously removed to reduce alert fatigue.</li>
+</ul>
+
+<h2>Monitoring</h2>
+<ul>
+    <li>Dashboards exist for all relevant Service Level Indicators (SLIs) and Service Level Objectives (SLOs) for the
+        product.</li>
+    <li>The dashboards are actively reviewed by the support engineers during on-call hours.</li>
+    <li>SLIs and SLOs are properly identified and defined accurately for your products. They are removed or updated as
+        the product evolves.</li>
+</ul>
+
+<h2>On-call Support</h2>
+<ul>
+    <li>A proper on-call roster is available for daily, weekend and holidays for at least the next three months.</li>
+    <li>The on-call roster is publicly available for everyone to refer to, including engineer's contact details.</li>
+    <li>The on-call notification system is configured with the correct escalation path.</li>
+    <li>The time between the incident and the on-call response must be minimal and reduced over time. The team is
+        responsible for capturing and reporting this response time.</li>
+    <li>A handoff meeting should be conducted when on-call responsibility is passed on to another engineer, focusing on
+        a summary of issues and learnings.</li>
+</ul>
+
+<h2>Incident Management</h2>
+<ul>
+    <li>The time gap between the incident occurrence and detection must be minimal and reduced over time. The team is
+        responsible for capturing and reporting this time to detection.</li>
+    <li>The team works on restoring the service immediately and restoration of service is prioritised over investigation
+        of the defect/issue in the system.</li>
+    <li>The Mean Time to Recovery (MTTR) must be captured and reported for all service unavailability issues and
+        incidents. The team must actively strive to reduce MTTR.</li>
+    <li>Clearly documented step by step playbooks are in place and used for resolving incidents.</li>
+    <li>The incident tracker tool is updated on time with relevant details.</li>
+    <li>A post-mortem report is created and corrective/preventive action items are identified. These action items are
+        fed back into the product backlog for execution. Post-mortems are blameless and focus on system and process
+        improvements rather than individual fault.</li>
+</ul>
+
+<h2>Ops Reviews</h2>
+<ul>
+    <li>A weekly report of the SLIs, SLOs and resource utilization of the product is presented to the team by the
+        support engineer.</li>
+    <li>Action items are identified during the Ops Reviews and are owned by the support engineer. They are tracked using
+        a tracking system and status reported for all open and in-progress items during subsequent Ops reviews.</li>
+    <li>Reports (possibly based on the tracking system) are available to view all the corrections based on Ops Reviews.
+    </li>
+</ul>
+
+<h2>Production Issues</h2>
+<ul>
+    <li>Production issues are investigated and resolved based on priority.</li>
+    <li>Reports (possibly based on the tracking system) are available to measure timeliness of response on support
+        issues.</li>
+    <li>Engineers are sufficiently trained to execute responsibilities during on-call and incidents. The engineers on
+        support must be given explicit training for handling sensitive information.</li>
+    <li>The team maintains a defined training module for new joiners for performing on-call and resolving incidents.
+    </li>
+    <li>Engineers have sufficient accesses and resources (documentation and playbooks) for performing on-call and
+        resolving incidents.</li>
+</ul>
+
+<h2>Deployment</h2>
+<ul>
+    <li>Deployments are automated and repeatable, with manual steps minimized and documented when unavoidable.</li>
+    <li>There exists a checklist for deployments thoroughly documented and used for all deployments by the deployment
+        engineer.</li>
+    <li>A rollback playbook exists and is used for all deployments that fail.</li>
+</ul>
+
+
+<p style="margin-top: 40px; font-style: italic; color: var(--color-text-muted);">
+    Operations should be a continuous process of self evaluation and improvement.
+    The team should strongly inculcate a culture of ownership and accountability for the operations of their product,
+    not just its development.
+</p>
