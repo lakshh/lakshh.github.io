@@ -33,5 +33,12 @@ const BLOG_POSTS = [
         date: "2026-01-12",
         tags: ["Operations", "DevOps", "Process"],
         contentPath: 'posts/operational-audits.html'
+    },
+    {
+        id: 6,
+        title: "Writing Effective Self-Appraisals",
+        date: "2026-01-19",
+        tags: ["Career", "Professional Growth"],
+        contentPath: 'posts/self-appraisal.html'
     }
 ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first

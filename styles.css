@@ -296,6 +296,36 @@ a:hover {
     padding-left: 0.5em;
 }
 
+/* Callout Box */
+.callout-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #0077b5;
+    padding: 20px 24px;
+    margin: 25px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.callout-box-title {
+    font-weight: 600;
+    color: var(--color-text-heading);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.callout-box-title::before {
+    content: "💡";
+    font-size: 1.1rem;
+}
+
+.callout-box p {
+    margin-bottom: 0;
+    color: var(--color-text-body);
+}
+
 /* Sidebar */
 .sidebar {
     padding-top: 10px;
