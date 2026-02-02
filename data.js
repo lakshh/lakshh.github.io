@@ -40,5 +40,12 @@ const BLOG_POSTS = [
         date: "2026-01-19",
         tags: ["Career", "Professional Growth"],
         contentPath: 'posts/self-appraisal.html'
+    },
+    {
+        id: 7,
+        title: "Software Essentials",
+        date: "2026-02-02",
+        tags: ["Software Engineering"],
+        contentPath: 'posts/sw-essentials.html'
     }
 ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first

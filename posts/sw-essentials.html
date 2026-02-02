@@ -1,0 +1,125 @@
+<p>
+    This post is about getting to the core of what is needed in a software product. I have listed them in the order of
+    importance (subjective):
+</p>
+
+<h2>Functional</h2>
+<p>
+    The software product must do what it promises to do. This is the reason users use and pay for the software. The
+    software is useful for the user and viable for the business.
+</p>
+
+<h2>Secure</h2>
+<p>
+    Security is often defined by the CIA triad: Confidentiality, Integrity, and Availability. Confidentiality ensures
+    that only the authenticated and authorized users can access the software and perform the allowed operations.
+    Integrity ensures that the data is accurate and trustworthy. The data must be protected from unauthorized
+    modification when it is stored and when it is transported. A persistent log of all operations performed along with
+    details of who, when and where must be maintained.
+</p>
+
+<h2>Available</h2>
+<p>
+    As the third pillar of the CIA triad, Availability ensures that users are able to access the software when they need
+    it. Availability is also a proxy for the reliability, resilience and the fault tolerance of the software. If the
+    software is not available, it loses trust from its users and incurs monetary loss for the business.
+</p>
+
+<h2>Maintainable</h2>
+<p>
+    Software must be maintainable to allow changes to be made and released in quick time. Ensure the changes are
+    isolated, predictable, and do not impact unrelated parts of the system. Use automated testing and deployment
+    pipelines
+    to ease the process of making changes and rolling out updates more quickly
+</p>
+<p>
+    Maintainable software is characterized by high cohesion, low coupling and low complexity. Ensure that accidental
+    complexity does not creep into the software in the form of unnecessary abstractions, patterns and components.
+    Investing in maintainability through techniques like refactoring and paying back technical debt helps in increasing
+    the velocity of development over time.
+</p>
+
+<h2>Scalable</h2>
+<p>
+    The software must be able to handle the increasing load of users and data. This is usually a measure of the
+    throughput of the software. For example, 100 concurrent users or 1 million requests processed per day.
+</p>
+<p>
+    The earnings from the software should scale linearly or better as the scalability of the software increases.
+    Premature scaling is a waste of resources. Consider scaling of one or two orders of magnitude at any time and
+    reassess the scalability requirements based on user adoption.
+</p>
+
+<h2>Performant</h2>
+<p>
+    While scalability is about throughput, performance is about user-perceived response time. It is the difference
+    between a tool that feels "snappy" and one that feels sluggish. The convention is to keep the response time under
+    400ms to keep a user's attention. Performance is often confused with latency, which is the
+    delay in any part of the system or the network.
+</p>
+<p>
+    Performance of the software is directly linked to the user experience and the revenue of the software. Increased
+    response time leads to churn among users and loss of revenue.
+</p>
+
+<h2>Accessible</h2>
+<p>
+    Users with disabilities must be able to use the software. This is often overlooked, but it is a legal requirement in
+    many countries. It is also a responsibility to make the software more inclusive and usable for everyone,
+    irrespective of their capabilities.
+</p>
+
+<p style="margin-top: 40px; font-style: italic; color: var(--color-text-muted);">
+    Sticking to the fundamentals of software development and being grounded helps in building the right mental models.
+    The above list is a bare minimum with surface-level explanations and it is a good starting point to delve further
+    into each of these aspects. AI-assisted coding and tools can serve as a means to accomplish these traits
+    efficiently.
+</p>
+
+<h2>Summary</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Primary Concern</th>
+            <th>Value to Business</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Functional</td>
+            <td>Correctness</td>
+            <td>Product Viability</td>
+        </tr>
+        <tr>
+            <td>Secure</td>
+            <td>Data Integrity (CIA)</td>
+            <td>Trust & Risk Mitigation</td>
+        </tr>
+        <tr>
+            <td>Available</td>
+            <td>Uptime/Reliability</td>
+            <td>Business Continuity</td>
+        </tr>
+        <tr>
+            <td>Maintainable</td>
+            <td>Code Health</td>
+            <td>Development Velocity</td>
+        </tr>
+        <tr>
+            <td>Scalable</td>
+            <td>Load Capacity</td>
+            <td>Sustainable Growth</td>
+        </tr>
+        <tr>
+            <td>Performant</td>
+            <td>Speed/Response Time</td>
+            <td>User Experience</td>
+        </tr>
+        <tr>
+            <td>Accessible</td>
+            <td>Universal Usage</td>
+            <td>Inclusivity & Compliance</td>
+        </tr>
+    </tbody>
+</table>

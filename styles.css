@@ -461,3 +461,68 @@ a:hover {
 .code-number {
     color: #b5cea8;
 }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: var(--color-social-linkedin);
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    color: var(--color-text-body);
+}
+
+td:last-child {
+    border-right: none;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Zebra Striping */
+tbody tr:nth-child(even) {
+    background-color: #f8fbfd;
+}
+
+/* Hover Effect */
+tbody tr:hover {
+    background-color: #e6f3ff;
+    transition: background-color 0.2s ease;
+}
+
+/* Specific column styling */
+td:first-child {
+    font-weight: 500;
+    color: var(--color-social-linkedin);
+}
