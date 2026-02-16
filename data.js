@@ -47,5 +47,12 @@ const BLOG_POSTS = [
         date: "2026-02-02",
         tags: ["Software Engineering"],
         contentPath: 'posts/sw-essentials.html'
+    },
+    {
+        id: 8,
+        title: "AI and Engineering Judgment",
+        date: "2026-02-16",
+        tags: ["AI", "Software Engineering"],
+        contentPath: 'posts/ai-review.html'
     }
 ].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first
